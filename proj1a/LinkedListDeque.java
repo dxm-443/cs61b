@@ -1,7 +1,6 @@
 public class LinkedListDeque<T> {
 
     public class StuffNode {
-
         T item;
         StuffNode prev;
         StuffNode next;
@@ -19,11 +18,10 @@ public class LinkedListDeque<T> {
 
     /** Create an empty list.*/
     public LinkedListDeque() {
-         size = 0;
-
-         sentinel = new StuffNode(null, null, null);
-         sentinel.prev = sentinel;
-         sentinel.next = sentinel;
+        size = 0;
+        sentinel = new StuffNode(null, null, null);
+        sentinel.prev = sentinel;
+        sentinel.next = sentinel;
     }
 
     /** Add item in the first of the list.*/
@@ -48,7 +46,7 @@ public class LinkedListDeque<T> {
     }
 
     /** Get the size of the list.*/
-    public int size(){
+    public int size() {
         return size;
     }
 
@@ -95,7 +93,7 @@ public class LinkedListDeque<T> {
         if (index > size && index < 0) {
             System.out.println("The index is beyond the size!");
         }
-        for (int j = 0;j <= index; j++ ) {
+        for (int j = 0; j <= index; j++) {
             sentinel = sentinel.next;
         }
         return sentinel.item;
@@ -105,11 +103,11 @@ public class LinkedListDeque<T> {
     public LinkedListDeque(LinkedListDeque<T> other) {
         size = 0;
 
-        sentinel = new StuffNode(null,null,null);
+        sentinel = new StuffNode(null, null, null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
 
-        for (int i = 0; i < other.size;i++) {
+        for (int i = 0; i < other.size; i++) {
             addLast(other.get(i));
         }
     }

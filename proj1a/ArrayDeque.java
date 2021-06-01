@@ -25,12 +25,12 @@ public class ArrayDeque<T> {
 
     /** Add the item after the last item.*/
     public void addLast(T item) {
-        items[nextLast] = item;
-        size += 1;
-        plusOne(nextLast);   //The changes of items' length will effect nextLast.
         while (isFull()) {
             upsize();
         }
+        items[nextLast] = item;
+        size += 1;
+        plusOne(nextLast);   //The changes of items' length will effect nextLast.
     }
 
     /** Use reminder to locate the nextFirst and nextLast.*/
