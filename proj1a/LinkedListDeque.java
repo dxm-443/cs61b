@@ -11,9 +11,15 @@ public class LinkedListDeque<Type> {
         }
     }
 
+    /**
+     * The items in a deque.
+     */
     private StuffNode sentinel;
     private int size;
 
+    /**
+     * Create an empty list.
+     */
     public LinkedListDeque() {
          size = 0;
 
@@ -22,27 +28,32 @@ public class LinkedListDeque<Type> {
          sentinel.next = sentinel;
     }
 
-    public void addFirst(Type i){
+    /**
+     *A dd item in the first of the list.
+     */
+    public void addFirst(Type i) {
         size += 1;
         StuffNode first =  new StuffNode(i, sentinel, sentinel.next);
         sentinel.next.next.prev = first;
         sentinel.next = first;
     }
 
-    public void addLast(Type i){
+    /**
+     * Add item in the last of the list.
+     */
+    public void addLast(Type i) {
         size += 1;
-        StuffNode last =  new StuffNode(i, sentinel.prev, sentinel);
+        StuffNode last = new StuffNode(i, sentinel.prev, sentinel);
         sentinel.prev.prev.next = last;
         sentinel.prev = last;
     }
 
-    public boolean isEmpty(){
-        if (size == 0){
-            return true;
-        }
-        return false;
+    /** Check whether the list is empty.*/
+    public boolean isEmpty() {
+        return size == 0;
     }
 
+    /** Get the size of the list.*/
     public int size(){
         return size;
     }
@@ -52,19 +63,19 @@ public class LinkedListDeque<Type> {
      * separated by a space. Once all the items have been printed,
      * print out a new line.
      */
-    public void printDeque(){
-        for (int j = 0; j < size; j++){
+    public void printDeque() {
+        for (int j = 0; j < size; j++) {
             System.out.println(sentinel.next.item);
             sentinel = sentinel.next;
         }
     }
 
-    /**Removes and returns the item at the front of the deque.
-     * If no such item exists, returns null.
+    /** Removes and returns the item at the front of the deque,
+     * if no such item exists, returns null.
      */
-    public Type removeFirst(){
+    public Type removeFirst() {
         size -= 1;
-        if ( sentinel.next == sentinel){
+        if (sentinel.next == sentinel) {
             return null;
         }
         sentinel.next = sentinel.next.next;
@@ -72,12 +83,12 @@ public class LinkedListDeque<Type> {
         return sentinel.next.item;
     }
 
-    /**Removes and returns the item at the back of the deque.
+    /** Removes and returns the item at the back of the deque.
      * If no such item exists, returns null.
      */
-    public Type removeLast(){
+    public Type removeLast() {
         size -= 1;
-        if ( sentinel.prev == sentinel){
+        if (sentinel.prev == sentinel) {
             return null;
         }
         sentinel.prev = sentinel.prev.prev;
@@ -85,27 +96,26 @@ public class LinkedListDeque<Type> {
         return sentinel.prev.item;
     }
 
-    public Type get(int index){
-        if (index > size && index < 0){
+    /** Get the item in index i.*/
+    public Type get(int index) {
+        if (index > size && index < 0) {
             System.out.println("The index is beyond the size!");
         }
-        for (int j = 0;j <= index; j++ ){
+        for (int j = 0;j <= index; j++ ) {
             sentinel = sentinel.next;
         }
         return sentinel.item;
     }
 
-    /**
-     *deep copy
-     */
-    public LinkedListDeque(LinkedListDeque<Type> other){
+    /** Deep copy.*/
+    public LinkedListDeque(LinkedListDeque<Type> other) {
         size = 0;
 
         sentinel = new StuffNode(null,null,null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
 
-        for (int i = 0; i < other.size;i++){
+        for (int i = 0; i < other.size;i++) {
             addLast(other.get(i));
         }
     }
