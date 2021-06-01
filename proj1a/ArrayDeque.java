@@ -1,19 +1,20 @@
-public class ArrayDeque<Type> {
-    private Type[] items;
+public class ArrayDeque<T> {
+
+    private T[] items;
     private int size;
     private int nextFirst;
     private int nextLast;
 
     /** Constructor of the ArrayDeque.*/
     public ArrayDeque() {
-        items = (Type[]) new Object[8];
+        items = (T[]) new Object[8];
         size = 0;
         nextFirst = 0;
         nextLast = 1;
     }
 
     /** Add the item before the first item.*/
-    public void addFirst(Type item) {
+    public void addFirst(T item) {
         while (isFull()) {
             upsize();
         }
@@ -23,7 +24,7 @@ public class ArrayDeque<Type> {
     }
 
     /** Add the item after the last item.*/
-    public void addLast(Type item) {
+    public void addLast(T item) {
         items[nextLast] = item;
         size += 1;
         plusOne(nextLast);   //The changes of items' length will effect nextLast.
@@ -49,21 +50,21 @@ public class ArrayDeque<Type> {
 
     /** Resize the array's length.*/
     private void resize(int capacity) {
-            Type[] a = (Type[]) new Object[capacity];
-            System.arraycopy(items, plusOne(nextFirst), a, 0, size);
-            items = a;
-            nextFirst = minusOne(0);
-            nextLast = size;
+        T[] a = (T[]) new Object[capacity];
+        System.arraycopy(items, plusOne(nextFirst), a, 0, size);
+        items = a;
+        nextFirst = minusOne(0);
+        nextLast = size;
     }
 
     /** Cut the array,making it shorter.*/
     private void downsize() {
-            resize(items.length / 2);
+        resize(items.length / 2);
     }
 
     /** When the array is full,resizing it longer.*/
     private void upsize() {
-            resize(items.length * 2);
+        resize(items.length * 2);
     }
 
     /** Check whether the array is empty.*/
@@ -84,35 +85,35 @@ public class ArrayDeque<Type> {
     }
 
     /** Remove the first item.*/
-    public Type removeFirst() {
-        while ( items.length >= 16 && (size / items.length) < 0.25) {
+    public T removeFirst() {
+        while (items.length >= 16 && (size / items.length) < 0.25) {
             downsize();
         }
-        Type x = get(plusOne(nextFirst));
+        T x = get(plusOne(nextFirst));
         items[plusOne(nextFirst)] = null;
         size -= 1;
         return x;
     }
 
     /** Remove the last item.*/
-    public Type removeLast() {
-        while ( items.length >= 16 && (size / items.length) < 0.25) {
+    public T removeLast() {
+        while (items.length >= 16 && (size / items.length) < 0.25) {
             downsize();
         }
-        Type x = get(minusOne(nextLast));
+        T x = get(minusOne(nextLast));
         items[minusOne(nextLast)] = null;
         size -= 1;
         return x;
     }
 
     /** Get the item of a specific index.*/
-    public Type get(int index) {
+    public T get(int index) {
         return items[index];
     }
 
     /** Deep copy.*/
     public ArrayDeque(ArrayDeque other) {
-        items = (Type[]) new Object[other.size()];
+        items = (T[]) new Object[other.size()];
         nextFirst = other.nextFirst;
         nextLast = other.nextLast;
         size = other.size;

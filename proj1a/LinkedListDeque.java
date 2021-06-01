@@ -1,47 +1,41 @@
-public class LinkedListDeque<Type> {
+public class LinkedListDeque<T> {
+
     public class StuffNode {
-        Type item;
+
+        T item;
         StuffNode prev;
         StuffNode next;
 
-        public StuffNode(Type i, StuffNode s, StuffNode n) {
+        public StuffNode(T i, StuffNode s, StuffNode n) {
             item = i;
             prev = s;
             next = n;
         }
     }
 
-    /**
-     * The items in a deque.
-     */
+    /** The items in a deque.*/
     private StuffNode sentinel;
     private int size;
 
-    /**
-     * Create an empty list.
-     */
+    /** Create an empty list.*/
     public LinkedListDeque() {
          size = 0;
 
-         sentinel = new StuffNode(null,null,null);
+         sentinel = new StuffNode(null, null, null);
          sentinel.prev = sentinel;
          sentinel.next = sentinel;
     }
 
-    /**
-     *A dd item in the first of the list.
-     */
-    public void addFirst(Type i) {
+    /** Add item in the first of the list.*/
+    public void addFirst(T i) {
         size += 1;
         StuffNode first =  new StuffNode(i, sentinel, sentinel.next);
         sentinel.next.next.prev = first;
         sentinel.next = first;
     }
 
-    /**
-     * Add item in the last of the list.
-     */
-    public void addLast(Type i) {
+    /** Add item in the last of the list.*/
+    public void addLast(T i) {
         size += 1;
         StuffNode last = new StuffNode(i, sentinel.prev, sentinel);
         sentinel.prev.prev.next = last;
@@ -73,7 +67,7 @@ public class LinkedListDeque<Type> {
     /** Removes and returns the item at the front of the deque,
      * if no such item exists, returns null.
      */
-    public Type removeFirst() {
+    public T removeFirst() {
         size -= 1;
         if (sentinel.next == sentinel) {
             return null;
@@ -86,7 +80,7 @@ public class LinkedListDeque<Type> {
     /** Removes and returns the item at the back of the deque.
      * If no such item exists, returns null.
      */
-    public Type removeLast() {
+    public T removeLast() {
         size -= 1;
         if (sentinel.prev == sentinel) {
             return null;
@@ -97,7 +91,7 @@ public class LinkedListDeque<Type> {
     }
 
     /** Get the item in index i.*/
-    public Type get(int index) {
+    public T get(int index) {
         if (index > size && index < 0) {
             System.out.println("The index is beyond the size!");
         }
@@ -108,7 +102,7 @@ public class LinkedListDeque<Type> {
     }
 
     /** Deep copy.*/
-    public LinkedListDeque(LinkedListDeque<Type> other) {
+    public LinkedListDeque(LinkedListDeque<T> other) {
         size = 0;
 
         sentinel = new StuffNode(null,null,null);
