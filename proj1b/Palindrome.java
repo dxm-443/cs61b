@@ -23,4 +23,17 @@ public class Palindrome {
         String reverse = word_reverse(d1);
         return word.compareTo(reverse) == 0;
     }
+
+    public boolean isPalindrome(String word, CharacterComparator cc){
+        if (word == null || word.length() <= 1) {
+            return true;
+        }
+        int sum = 0;
+        for (int i = 0; i < word.length() / 2; i++){
+            if (!cc.equalChars(word.charAt(i),word.charAt(word.length() - i - 1))){
+                sum += 1;
+            }
+        }
+        return sum == 0;
+    }
 }

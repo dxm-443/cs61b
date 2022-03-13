@@ -22,4 +22,12 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("noon"));
         assertFalse(palindrome.isPalindrome("car"));
     }
+
+    @Test
+    public void testisOffByOnePalindrome(){
+        CharacterComparator cc = new OffByOne();
+        assertTrue(palindrome.isPalindrome("flake", cc));
+        assertFalse(palindrome.isPalindrome("noon", cc));
+        assertTrue(palindrome.isPalindrome("a", cc));
+    }
 }
