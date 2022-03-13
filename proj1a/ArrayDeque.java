@@ -1,4 +1,6 @@
-
+/**
+ * A circular array.
+ */
 public class ArrayDeque<T> {
 
     private T[] items;
@@ -87,7 +89,7 @@ public class ArrayDeque<T> {
 
     /** Remove the first item.*/
     public T removeFirst() {
-        while (items.length >= 16 && (size / items.length) < 0.25) {
+        while (items.length >= 16 && size < (items.length / 4)) {
             downsize();
         }
         T x = get(plusOne(nextFirst));

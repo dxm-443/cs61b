@@ -1,3 +1,4 @@
+import java.awt.im.InputMethodRequests;
 import java.util.Formatter;
 
 /**
@@ -21,7 +22,7 @@ public class IntList {
      * A List with first FIRST0 and rest REST0.
      */
     public IntList(int first0, IntList rest0) {
-        first = first0;
+                              first = first0;
         rest = rest0;
     }
 
@@ -40,7 +41,7 @@ public class IntList {
 
         while (L != null) {
             L.first = L.first * L.first;
-            L = L.rest;
+            L =  L.rest;
         }
     }
 
@@ -74,7 +75,6 @@ public class IntList {
 
     /** DO NOT MODIFY ANYTHING ABOVE THIS LINE! */
 
-
     /**
      * Returns a list consisting of the elements of A followed by the
      * *  elements of B.  May modify items of A. Don't use 'new'.
@@ -93,6 +93,16 @@ public class IntList {
         return A;
     }
 
+    public static IntList DcatenateRecursive(IntList A, IntList B){
+        if (A == null){
+            return B;
+        }else if (A.rest == null){
+            A.rest = B;
+            return null;
+        }
+        dcatenate(A.rest, B);
+        return A;
+    }
     /**
      * Returns a list consisting of the elements of A followed by the
      * * elements of B.  May NOT modify items of A.  Use 'new'.
@@ -106,10 +116,11 @@ public class IntList {
         IntList ptr = res;
         A = A.rest;
         while (A != null) {
-            ptr.rest = new IntList(A.first, B);
+            ptr.rest = new IntList(A.first, null);
             A = A.rest;
             ptr = ptr.rest;
         }
+        ptr.rest = B;
         return res;
     }
 

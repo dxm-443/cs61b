@@ -1,4 +1,7 @@
-
+/**
+ * Deque (usually pronounced like “deck”) is an irregular acronym of
+ * double-ended queue.
+ */
 public class LinkedListDeque<T> {
 
     public class StuffNode {
