@@ -1,7 +1,7 @@
 /**
  * A circular array.
  */
-public class ArrayDeque<T> {
+public class ArrayDeque<T>implements Deque<T>{
 
     private T[] items;
     private int size;
@@ -17,6 +17,7 @@ public class ArrayDeque<T> {
     }
 
     /** Add the item before the first item.*/
+    @Override
     public void addFirst(T item) {
         while (isFull()) {
             upsize();
@@ -27,6 +28,7 @@ public class ArrayDeque<T> {
     }
 
     /** Add the item after the last item.*/
+    @Override
     public void addLast(T item) {
         while (isFull()) {
             upsize();
@@ -71,16 +73,19 @@ public class ArrayDeque<T> {
     }
 
     /** Check whether the array is empty.*/
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
     /** Get the size of items.*/
+    @Override
     public int size() {
         return size;
     }
 
     /** Print the deque.*/
+    @Override
     public void printDeque() {
         for (int i = plusOne(nextFirst); i < nextFirst + size; i++) {
             System.out.println(get(i));
@@ -88,6 +93,7 @@ public class ArrayDeque<T> {
     }
 
     /** Remove the first item.*/
+    @Override
     public T removeFirst() {
         while (items.length >= 16 && size < (items.length / 4)) {
             downsize();
@@ -99,6 +105,7 @@ public class ArrayDeque<T> {
     }
 
     /** Remove the last item.*/
+    @Override
     public T removeLast() {
         while (items.length >= 16 && (size / items.length) < 0.25) {
             downsize();
@@ -110,6 +117,7 @@ public class ArrayDeque<T> {
     }
 
     /** Get the item of a specific index.*/
+    @Override
     public T get(int index) {
         return items[index];
     }
